@@ -1,0 +1,16 @@
+const express = require('express')
+const router = express.Router()
+
+
+// Upload image
+const { Imagecreate,ImageUploads, ImageUpload, ImageDelete } = require('../controller/img')
+const upload = require('../Middleware/Upload')
+const authCheck = require('../Middleware/authCheck')
+//single image upload
+//array of images upload
+router.post('/create',authCheck, upload.single('imageUrl'), Imagecreate)
+router.post('/uploads',authCheck, upload.array('imageUrl', 5), ImageUploads)
+router.post('/upload',authCheck, upload.single('imageUrl'), ImageUpload)
+router.delete('/image/:id',authCheck, ImageDelete)
+
+module.exports = router

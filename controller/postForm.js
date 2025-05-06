@@ -1,21 +1,27 @@
-
 const prisma = require("../config/Prisma");
 
 const createPost = async (req, res) => {
   const { title, content } = req.body;
-  const file = req.file;
-  const image = file.path;
+  const files = req.files;
   const userId = req.user.id;
 
   try {
+    const imagePaths = files.map(file => file.path);
+
     const post = await prisma.post.create({
       data: {
         title,
         content,
-        image,
+        images: {
+          create: imagePaths.map(path => ({ url: path })),
+        },
         userId,
       },
+      include: {
+        images: true,
+      },
     });
+
     res.status(201).json({ message: "Post created", data: post });
   } catch (error) {
     res.status(500).json({ message: "Error creating post", error });
@@ -28,7 +34,7 @@ const updatePost = async (req, res) => {
 
   try {
     const post = await prisma.post.update({
-      where: { id },
+      where: { id: Number(id) },
       data: { title, content },
     });
     res.status(200).json({ message: "Post updated", data: post });
@@ -41,7 +47,7 @@ const deletePost = async (req, res) => {
   const { id } = req.params;
 
   try {
-    await prisma.post.delete({ where: { id } });
+    await prisma.post.delete({ where: { id: Number(id) } });
     res.status(200).json({ message: "Post deleted" });
   } catch (error) {
     res.status(404).json({ message: "Post not found", error });
@@ -53,4 +59,3 @@ module.exports = {
   updatePost,
   deletePost,
 };
-

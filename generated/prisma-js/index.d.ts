@@ -226,8 +226,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -2106,24 +2106,24 @@ export namespace Prisma {
   export type PostMinAggregateOutputType = {
     id: number | null
     title: string | null
-    descrption: string | null
-    imageUrl: string | null
+    content: string | null
+    image: string | null
     userId: number | null
   }
 
   export type PostMaxAggregateOutputType = {
     id: number | null
     title: string | null
-    descrption: string | null
-    imageUrl: string | null
+    content: string | null
+    image: string | null
     userId: number | null
   }
 
   export type PostCountAggregateOutputType = {
     id: number
     title: number
-    descrption: number
-    imageUrl: number
+    content: number
+    image: number
     userId: number
     _all: number
   }
@@ -2142,24 +2142,24 @@ export namespace Prisma {
   export type PostMinAggregateInputType = {
     id?: true
     title?: true
-    descrption?: true
-    imageUrl?: true
+    content?: true
+    image?: true
     userId?: true
   }
 
   export type PostMaxAggregateInputType = {
     id?: true
     title?: true
-    descrption?: true
-    imageUrl?: true
+    content?: true
+    image?: true
     userId?: true
   }
 
   export type PostCountAggregateInputType = {
     id?: true
     title?: true
-    descrption?: true
-    imageUrl?: true
+    content?: true
+    image?: true
     userId?: true
     _all?: true
   }
@@ -2253,8 +2253,8 @@ export namespace Prisma {
   export type PostGroupByOutputType = {
     id: number
     title: string
-    descrption: string
-    imageUrl: string
+    content: string
+    image: string
     userId: number
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
@@ -2280,8 +2280,8 @@ export namespace Prisma {
   export type PostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    descrption?: boolean
-    imageUrl?: boolean
+    content?: boolean
+    image?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
@@ -2289,8 +2289,8 @@ export namespace Prisma {
   export type PostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    descrption?: boolean
-    imageUrl?: boolean
+    content?: boolean
+    image?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
@@ -2298,8 +2298,8 @@ export namespace Prisma {
   export type PostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    descrption?: boolean
-    imageUrl?: boolean
+    content?: boolean
+    image?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
@@ -2307,12 +2307,12 @@ export namespace Prisma {
   export type PostSelectScalar = {
     id?: boolean
     title?: boolean
-    descrption?: boolean
-    imageUrl?: boolean
+    content?: boolean
+    image?: boolean
     userId?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "descrption" | "imageUrl" | "userId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "image" | "userId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2331,8 +2331,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
-      descrption: string
-      imageUrl: string
+      content: string
+      image: string
       userId: number
     }, ExtArgs["result"]["post"]>
     composites: {}
@@ -2760,8 +2760,8 @@ export namespace Prisma {
   interface PostFieldRefs {
     readonly id: FieldRef<"Post", 'Int'>
     readonly title: FieldRef<"Post", 'String'>
-    readonly descrption: FieldRef<"Post", 'String'>
-    readonly imageUrl: FieldRef<"Post", 'String'>
+    readonly content: FieldRef<"Post", 'String'>
+    readonly image: FieldRef<"Post", 'String'>
     readonly userId: FieldRef<"Post", 'Int'>
   }
     
@@ -3204,8 +3204,8 @@ export namespace Prisma {
   export const PostScalarFieldEnum: {
     id: 'id',
     title: 'title',
-    descrption: 'descrption',
-    imageUrl: 'imageUrl',
+    content: 'content',
+    image: 'image',
     userId: 'userId'
   };
 
@@ -3336,8 +3336,8 @@ export namespace Prisma {
     NOT?: PostWhereInput | PostWhereInput[]
     id?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
-    descrption?: StringFilter<"Post"> | string
-    imageUrl?: StringFilter<"Post"> | string
+    content?: StringFilter<"Post"> | string
+    image?: StringFilter<"Post"> | string
     userId?: IntFilter<"Post"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -3345,29 +3345,29 @@ export namespace Prisma {
   export type PostOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    descrption?: SortOrder
-    imageUrl?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
   export type PostWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    title?: string
     AND?: PostWhereInput | PostWhereInput[]
     OR?: PostWhereInput[]
     NOT?: PostWhereInput | PostWhereInput[]
-    descrption?: StringFilter<"Post"> | string
-    imageUrl?: StringFilter<"Post"> | string
+    title?: StringFilter<"Post"> | string
+    content?: StringFilter<"Post"> | string
+    image?: StringFilter<"Post"> | string
     userId?: IntFilter<"Post"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "title">
+  }, "id">
 
   export type PostOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
-    descrption?: SortOrder
-    imageUrl?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
     userId?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
@@ -3382,8 +3382,8 @@ export namespace Prisma {
     NOT?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Post"> | number
     title?: StringWithAggregatesFilter<"Post"> | string
-    descrption?: StringWithAggregatesFilter<"Post"> | string
-    imageUrl?: StringWithAggregatesFilter<"Post"> | string
+    content?: StringWithAggregatesFilter<"Post"> | string
+    image?: StringWithAggregatesFilter<"Post"> | string
     userId?: IntWithAggregatesFilter<"Post"> | number
   }
 
@@ -3439,53 +3439,53 @@ export namespace Prisma {
 
   export type PostCreateInput = {
     title: string
-    descrption: string
-    imageUrl: string
+    content: string
+    image: string
     user: UserCreateNestedOneWithoutPostsInput
   }
 
   export type PostUncheckedCreateInput = {
     id?: number
     title: string
-    descrption: string
-    imageUrl: string
+    content: string
+    image: string
     userId: number
   }
 
   export type PostUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    descrption?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
   }
 
   export type PostUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    descrption?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type PostCreateManyInput = {
     id?: number
     title: string
-    descrption: string
-    imageUrl: string
+    content: string
+    image: string
     userId: number
   }
 
   export type PostUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
-    descrption?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
   }
 
   export type PostUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    descrption?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -3596,8 +3596,8 @@ export namespace Prisma {
   export type PostCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    descrption?: SortOrder
-    imageUrl?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
     userId?: SortOrder
   }
 
@@ -3609,16 +3609,16 @@ export namespace Prisma {
   export type PostMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    descrption?: SortOrder
-    imageUrl?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
     userId?: SortOrder
   }
 
   export type PostMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    descrption?: SortOrder
-    imageUrl?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
     userId?: SortOrder
   }
 
@@ -3766,15 +3766,15 @@ export namespace Prisma {
 
   export type PostCreateWithoutUserInput = {
     title: string
-    descrption: string
-    imageUrl: string
+    content: string
+    image: string
   }
 
   export type PostUncheckedCreateWithoutUserInput = {
     id?: number
     title: string
-    descrption: string
-    imageUrl: string
+    content: string
+    image: string
   }
 
   export type PostCreateOrConnectWithoutUserInput = {
@@ -3809,8 +3809,8 @@ export namespace Prisma {
     NOT?: PostScalarWhereInput | PostScalarWhereInput[]
     id?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
-    descrption?: StringFilter<"Post"> | string
-    imageUrl?: StringFilter<"Post"> | string
+    content?: StringFilter<"Post"> | string
+    image?: StringFilter<"Post"> | string
     userId?: IntFilter<"Post"> | number
   }
 
@@ -3859,28 +3859,28 @@ export namespace Prisma {
   export type PostCreateManyUserInput = {
     id?: number
     title: string
-    descrption: string
-    imageUrl: string
+    content: string
+    image: string
   }
 
   export type PostUpdateWithoutUserInput = {
     title?: StringFieldUpdateOperationsInput | string
-    descrption?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
   }
 
   export type PostUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    descrption?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
   }
 
   export type PostUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    descrption?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
   }
 
 

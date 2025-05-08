@@ -2107,7 +2107,6 @@ export namespace Prisma {
     id: number | null
     title: string | null
     content: string | null
-    image: string | null
     userId: number | null
   }
 
@@ -2115,7 +2114,6 @@ export namespace Prisma {
     id: number | null
     title: string | null
     content: string | null
-    image: string | null
     userId: number | null
   }
 
@@ -2143,7 +2141,6 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
-    image?: true
     userId?: true
   }
 
@@ -2151,7 +2148,6 @@ export namespace Prisma {
     id?: true
     title?: true
     content?: true
-    image?: true
     userId?: true
   }
 
@@ -2254,7 +2250,7 @@ export namespace Prisma {
     id: number
     title: string
     content: string
-    image: string
+    image: string[]
     userId: number
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
@@ -2332,7 +2328,7 @@ export namespace Prisma {
       id: number
       title: string
       content: string
-      image: string
+      image: string[]
       userId: number
     }, ExtArgs["result"]["post"]>
     composites: {}
@@ -2761,7 +2757,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Post", 'Int'>
     readonly title: FieldRef<"Post", 'String'>
     readonly content: FieldRef<"Post", 'String'>
-    readonly image: FieldRef<"Post", 'String'>
+    readonly image: FieldRef<"Post", 'String[]'>
     readonly userId: FieldRef<"Post", 'Int'>
   }
     
@@ -3337,7 +3333,7 @@ export namespace Prisma {
     id?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
-    image?: StringFilter<"Post"> | string
+    image?: StringNullableListFilter<"Post">
     userId?: IntFilter<"Post"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -3358,7 +3354,7 @@ export namespace Prisma {
     NOT?: PostWhereInput | PostWhereInput[]
     title?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
-    image?: StringFilter<"Post"> | string
+    image?: StringNullableListFilter<"Post">
     userId?: IntFilter<"Post"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -3383,7 +3379,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Post"> | number
     title?: StringWithAggregatesFilter<"Post"> | string
     content?: StringWithAggregatesFilter<"Post"> | string
-    image?: StringWithAggregatesFilter<"Post"> | string
+    image?: StringNullableListFilter<"Post">
     userId?: IntWithAggregatesFilter<"Post"> | number
   }
 
@@ -3440,7 +3436,7 @@ export namespace Prisma {
   export type PostCreateInput = {
     title: string
     content: string
-    image: string
+    image?: PostCreateimageInput | string[]
     user: UserCreateNestedOneWithoutPostsInput
   }
 
@@ -3448,14 +3444,14 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
-    image: string
+    image?: PostCreateimageInput | string[]
     userId: number
   }
 
   export type PostUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: PostUpdateimageInput | string[]
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
   }
 
@@ -3463,7 +3459,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: PostUpdateimageInput | string[]
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -3471,21 +3467,21 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
-    image: string
+    image?: PostCreateimageInput | string[]
     userId: number
   }
 
   export type PostUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: PostUpdateimageInput | string[]
   }
 
   export type PostUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: PostUpdateimageInput | string[]
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -3588,6 +3584,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -3610,7 +3614,6 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    image?: SortOrder
     userId?: SortOrder
   }
 
@@ -3618,7 +3621,6 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     content?: SortOrder
-    image?: SortOrder
     userId?: SortOrder
   }
 
@@ -3681,10 +3683,19 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
+  export type PostCreateimageInput = {
+    set: string[]
+  }
+
   export type UserCreateNestedOneWithoutPostsInput = {
     create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
     connectOrCreate?: UserCreateOrConnectWithoutPostsInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type PostUpdateimageInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -3767,14 +3778,14 @@ export namespace Prisma {
   export type PostCreateWithoutUserInput = {
     title: string
     content: string
-    image: string
+    image?: PostCreateimageInput | string[]
   }
 
   export type PostUncheckedCreateWithoutUserInput = {
     id?: number
     title: string
     content: string
-    image: string
+    image?: PostCreateimageInput | string[]
   }
 
   export type PostCreateOrConnectWithoutUserInput = {
@@ -3810,7 +3821,7 @@ export namespace Prisma {
     id?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
-    image?: StringFilter<"Post"> | string
+    image?: StringNullableListFilter<"Post">
     userId?: IntFilter<"Post"> | number
   }
 
@@ -3860,27 +3871,27 @@ export namespace Prisma {
     id?: number
     title: string
     content: string
-    image: string
+    image?: PostCreateimageInput | string[]
   }
 
   export type PostUpdateWithoutUserInput = {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: PostUpdateimageInput | string[]
   }
 
   export type PostUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: PostUpdateimageInput | string[]
   }
 
   export type PostUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: PostUpdateimageInput | string[]
   }
 
 

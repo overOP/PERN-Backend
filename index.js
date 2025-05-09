@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const path = require("path");
 //config env
 require("dotenv").config();
 
@@ -14,7 +15,7 @@ app.use(cors());
 //parse urlencoded data
 app.use(express.urlencoded({ extended: true }));
 //static path
-app.use("/storage", express.static(path.join(__dirname, "storage")));
+app.use("/Storage", express.static(path.join(__dirname, "Storage"), { fallthrough: false }));
 
 //routing main route
 app.use("/users", userRoute);
